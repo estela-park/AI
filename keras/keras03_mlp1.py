@@ -1,7 +1,6 @@
 import numpy
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import InputLayer
 
 '''
 numpy.array.method 모르는 자의 뻘 짓
@@ -16,7 +15,6 @@ x = [list(range(1, 11)), [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.5, 1.4, 1.3]]
 x_input = numpy.array(x).transpose()
 y = numpy.array(list(range(11, 21)))
 x_predict = numpy.array([x[0][7: 10], x[1][7: 10]]).transpose()
-
 
 print(x_input)
 print(y)
@@ -99,8 +97,14 @@ x_reshaped = numpy.reshape([x1, x2], (10, 2), order='A'): [[ 1.   2. ]
                                                            [ 1.6  1.5]
                                                            [ 1.4  1.3]]
 '''
-import pandas as pd
-a1 = pd.DataFrame([[1, 2],[3, 4],[6, 7]], index=['a', 'b', 'c'], columns=['A', 'B'])
-a2 = pd.DataFrame([[1, 2, 3], [4, 5, 6]], index=['a', 'b'], columns=['A', 'B', 'C'])
-print(a1)
-print(a2)
+'''
+pd.DataFrame([[1, 2],[3, 4],[6, 7]], index=['a', 'b', 'c'], columns=['A', 'B'])
+   A  B
+a  1  2
+b  3  4
+c  6  7
+pd.DataFrame([[1, 2, 3], [4, 5, 6]], index=['a', 'b'], columns=['A', 'B', 'C'])
+   A  B  C
+a  1  2  3
+b  4  5  6
+'''

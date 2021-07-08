@@ -14,7 +14,7 @@ model = Sequential()
 model.add(Dense(1, input_dim=1))
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_input, y_input, epochs=10000, batch_size=1)
+model.fit(x_input, y_input, epochs=1000000, batch_size=1)
 
 loss = model.evaluate(x_input, y_input)
 print('loss: ', loss)
