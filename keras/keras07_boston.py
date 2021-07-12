@@ -69,17 +69,17 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=354, random
 model = Sequential()
 model.add(Dense(26, input_dim=13))
 model.add(Dense(52))
-model.add(Dense(26))
 model.add(Dense(13))
-model.add(Dense(5))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, epochs=3000, batch_size=3)
+# bigger epoch size doesn't make whole lot of difference
+model.fit(x_train, y_train, epochs=800, batch_size=1)
 
 loss = model.evaluate(x_test, y_test)
-y_predicted = model.evaluate(x_test)
-
+y_predicted = model.predict(x_test)
+print(type(y_test))
+print(type(y_predicted))
 r2 = r2_score(y_test, y_predicted)
 
-print('loss:',loss,'accuracy:',r2)
+print('loss:', loss,'accuracy:',r2)
