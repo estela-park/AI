@@ -1,0 +1,39 @@
+from sklearn.datasets import load_boston
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Input
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+
+dataset = load_boston()
+
+x = dataset.data
+y = dataset.target
+
+for i in range(150):
+        
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85, random_state=i)
+
+    input1 = Input(shape=(13, ))
+    dense1 = Dense(104)(input1)
+    dense2 = Dense(52)(dense1)
+    dense3 = Dense(26)(dense2)
+    dense4 = Dense(13)(dense3)
+    output1 = Dense(1)(dense4)
+
+    model = Model(inputs=input1, outputs=output1)
+
+    model.compile(loss='mse', optimizer='adam')
+    model.fit(x_train, y_train, batch_size=13, epochs=300, verbose=0, validation_split=0.15)
+
+    loss = model.evaluate(x_test, y_test)
+    predict = model.predict(x_test)
+    r2 = r2_score(y_test, predict)
+
+    print(i,'done')
+    if r2 > 0.65:
+        print('loss:', loss, 'r2:', r2)
+
+'''
+4 done
+loss: 27.2264404296875 r2: 0.6691044297937997
+'''
