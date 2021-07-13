@@ -13,9 +13,6 @@ y1 = np.transpose(y1)
 
 x1_train, x1_test, x2_train, x2_test, y1_train, y1_test = train_test_split(x1, x2, y1, train_size=0.85)
 
-print(x1_train)
-print(y1_test)
-
 input11 = Input(shape=(3, ))
 dense11 = Dense(48, activation='relu')(input11)
 dense12 = Dense(12, activation='relu')(dense11)
@@ -30,7 +27,7 @@ dense23 = Dense(10, activation='relu')(dense22)
 output21 = Dense(1)(dense23)
 
 merge1 = concatenate([output11, output21])
-merge2 = Dense(10, name='hidden_altered2')(merge1)
+merge2 = Dense(10, name='hidden_altered1')(merge1)
 merge3 = Dense(5, activation='relu', name='altered2')(merge2)
 last_output = Dense(1)(merge3)
 
@@ -39,4 +36,18 @@ model = Model(inputs=[input11, input21], outputs=last_output)
 model.summary()
 
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
-model.fit([x1_train, x2_train], y1, batch_size=8, epochs=160, verbose=2, validation_split=0.15)
+model.fit([x1_train, x2_train], y1, batch_size=8, epochs=160, verbose=0, validation_split=0.15)
+
+# how model.evaluate's metrics works
+
+result = model.evaluate([x1_test, x2_test], y1_test)
+loss = result[0]
+mae = result[1]
+print('loss:', loss, 'mae', mae)
+
+predict = model.predict([x1_test, x2_test])
+print(predict.shape)
+print(predict)
+
+print(y1_test.shape)
+print(y1_test)
