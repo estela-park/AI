@@ -17,8 +17,8 @@ start = time.time()
 
 input1 = Input(shape=(10,))
 dense1 = Dense(64, activation='relu')(input1)
-dense2 = Dense(128, activation='relu')
-dense3 = Dense(32, activation='relu')
+dense2 = Dense(128, activation='relu')(dense1)
+dense3 = Dense(32, activation='relu')(dense2)
 output1 = Dense(1)(dense3)
 
 model = Model(inputs=input1, outputs=output1)
