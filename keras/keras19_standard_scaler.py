@@ -3,7 +3,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 
 dataset = load_boston()
@@ -13,11 +13,9 @@ y = dataset.target
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85, random_state=82)
 
-# reminder! in real life, test data is always not given while training
-scaler = MinMaxScaler()
+scaler = StandardScaler()
 scaler.fit(x_train)
 x_train_processed = scaler.transform(x_train)
-# test data should be normalized to train-set's scale
 x_test_processed = scaler.transform(x_test)
 
 input1 = Input(shape=(13, ))
@@ -40,9 +38,8 @@ r2 = r2_score(y_test, predict)
 print('loss:', loss, 'r2:', r2)
 
 '''
-performance for scaler fitted to train-set: lowered r2 value
-loss: 24.760156631469727 r2: 0.7716244218183297
-with larger(320 -> 3200) epochs
-loss: 12.336901664733887 r2: 0.886210456873193
- > not much of difference
+min-max-scaler rather deteriorate the accuracy
+standard-scaler doesn't seem to be superior either.
+loss: 13.52721881866455 r2: 0.8752315461584774
+raising epochs: 320 -> 3200
 '''
