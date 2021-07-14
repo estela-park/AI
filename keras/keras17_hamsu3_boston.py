@@ -21,13 +21,17 @@ output1 = Dense(1)(dense4)
 model = Model(inputs=input1, outputs=output1)
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, batch_size=13, epochs=300, verbose=0, validation_split=0.15)
+model.fit(x_train, y_train, batch_size=13, epochs=10000, verbose=0, validation_split=0.15)
 
 loss = model.evaluate(x_test, y_test)
 predict = model.predict(x_test)
 r2 = r2_score(y_test, predict)
 
 print('loss:', loss, 'r2:', r2)
+
+'''
+loss: 24.207006454467773 r2: 0.7767264253621938
+'''
 
 '''
 4 done
