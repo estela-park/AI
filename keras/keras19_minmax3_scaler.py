@@ -31,7 +31,7 @@ output1 = Dense(1)(hl)
 model = Model(inputs=input1, outputs=output1)
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, batch_size=13, epochs=3200, verbose=0, validation_split=0.15)
+model.fit(x_train, y_train, batch_size=13, epochs=300, verbose=0, validation_split=0.15)
 
 loss = model.evaluate(x_test, y_test)
 predict = model.predict(x_test)
@@ -40,9 +40,15 @@ r2 = r2_score(y_test, predict)
 print('loss:', loss, 'r2:', r2)
 
 '''
-performance for scaler fitted to train-set: lowered r2 value
+un-scaled
+loss: 15.694770812988281 r2: 0.8552390879201758
+
+performance for scaler : slightly lowered r2 value
 loss: 24.760156631469727 r2: 0.7716244218183297
+loss: 16.58163070678711 r2: 0.8470591407013782
+loss: 34.3520622253418 r2: 0.6831533805858843
+
 with larger(320 -> 3200) epochs
 loss: 12.336901664733887 r2: 0.886210456873193
- > not much of difference
+ > not much of difference with un-scaled data
 '''

@@ -12,11 +12,12 @@ y = dataset.target
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85, random_state=82)
 
 input1 = Input(shape=(13, ))
-dense1 = Dense(104, activation='relu')(input1)
-dense2 = Dense(52, activation='relu')(dense1)
-dense3 = Dense(26, activation='relu')(dense2)
-dense4 = Dense(13, activation='relu')(dense3)
-output1 = Dense(1)(dense4)
+hl = Dense(128, activation='relu')(input1)
+hl = Dense(64, activation='relu')(hl)
+hl = Dense(64, activation='relu')(hl)
+hl = Dense(64, activation='relu')(hl)
+hl = Dense(32, activation='relu')(hl)
+output1 = Dense(1)(hl)
 
 model = Model(inputs=input1, outputs=output1)
 
@@ -30,21 +31,26 @@ r2 = r2_score(y_test, predict)
 print('loss:', loss, 'r2:', r2)
 
 '''
+shape of the model to be cylinderical,
+epochs=300, w/h activation fn
+loss: 15.694770812988281 r2: 0.8552390879201758
+loss: 16.560565948486328 r2: 0.8472534301151344
+
 epochs=300, w/h activation fn
 loss: 16.838380813598633 r2: 0.8446910074225141
-'''
 
-'''
-epochs=10000
+epochs=3200, w/h activation fn
+loss: 11.550013542175293 r2: 0.8934683240263458
+
+epochs=10000, w/h activation fn
 loss: 20.832361221313477 r2: 0.8078524758174028
-'''
 
-'''
-epochs=300
+epochs=300, w/o activation fn
 loss: 24.207006454467773 r2: 0.7767264253621938
 '''
 
 '''
+for random_state
 4 done
 loss: 27.2264404296875 r2: 0.6691044297937997, 0.67
 22 done

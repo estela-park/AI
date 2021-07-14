@@ -5,7 +5,7 @@ x = np.transpose(x) # (100, 5)
 y = np.array([range(711, 811), range(101, 201)])
 y = np.transpose(y) # (100, 5)
 
-from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input
 
 # when you can't be bother to name every layer                         

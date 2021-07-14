@@ -29,7 +29,7 @@ output1 = Dense(1)(hl)
 model = Model(inputs=input1, outputs=output1)
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, batch_size=13, epochs=3200, verbose=0, validation_split=0.15)
+model.fit(x_train, y_train, batch_size=13, epochs=300, verbose=2, validation_split=0.15)
 
 loss = model.evaluate(x_test, y_test)
 predict = model.predict(x_test)
@@ -38,8 +38,11 @@ r2 = r2_score(y_test, predict)
 print('loss:', loss, 'r2:', r2)
 
 '''
-min-max-scaler rather deteriorate the accuracy
-standard-scaler doesn't seem to be superior either.
+un-scaled, epochs=300, w/h activation fn, 
+loss: 16.838380813598633 r2: 0.8446910074225141
+
+standard-scaler: marginally better accuracy
 loss: 13.52721881866455 r2: 0.8752315461584774
-raising epochs: 320 -> 3200
+loss: 15.420316696166992 r2: 0.8577705383927378
+loss: 16.71699333190918 r2: 0.8458106290985014
 '''
