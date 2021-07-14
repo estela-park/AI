@@ -12,16 +12,16 @@ y = dataset.target
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85, random_state=82)
 
 input1 = Input(shape=(13, ))
-dense1 = Dense(104)(input1)
-dense2 = Dense(52)(dense1)
-dense3 = Dense(26)(dense2)
-dense4 = Dense(13)(dense3)
+dense1 = Dense(104, activation='relu')(input1)
+dense2 = Dense(52, activation='relu')(dense1)
+dense3 = Dense(26, activation='relu')(dense2)
+dense4 = Dense(13, activation='relu')(dense3)
 output1 = Dense(1)(dense4)
 
 model = Model(inputs=input1, outputs=output1)
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, batch_size=13, epochs=10000, verbose=0, validation_split=0.15)
+model.fit(x_train, y_train, batch_size=13, epochs=300, verbose=0, validation_split=0.15)
 
 loss = model.evaluate(x_test, y_test)
 predict = model.predict(x_test)
@@ -30,6 +30,17 @@ r2 = r2_score(y_test, predict)
 print('loss:', loss, 'r2:', r2)
 
 '''
+epochs=300, w/h activation fn
+loss: 16.838380813598633 r2: 0.8446910074225141
+'''
+
+'''
+epochs=10000
+loss: 20.832361221313477 r2: 0.8078524758174028
+'''
+
+'''
+epochs=300
 loss: 24.207006454467773 r2: 0.7767264253621938
 '''
 
