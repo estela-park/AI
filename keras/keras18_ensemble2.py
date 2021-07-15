@@ -10,6 +10,7 @@ x2 = np.transpose(x2)
 
 y1 = np.array(range(1001, 1101))
 y2 = np.array(range(1901, 2001))
+# x1.shape: (100, 3), x2.shape: (100, 3), y1.shape: (100,)
 
 x1_train, x1_test, x2_train, x2_test, y1_train, y1_test, y2_train, y2_test = train_test_split(x1, x2, y1, y2, train_size=0.85, random_state=74)
 
@@ -49,4 +50,3 @@ mae = result[1]
 print('loss:', loss, 'mae', mae)
 
 predict = model.predict([x1_test, x2_test])
-
