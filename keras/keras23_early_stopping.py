@@ -3,6 +3,11 @@ from tensorflow.keras.layers import Dense, Input
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
+
+name_f = font_manager.FontProperties(fname='C:\Windows\Fonts\Gulim Regular')
+rc('font', family='Malgun Gothic')
 
 # Data 
 
@@ -52,7 +57,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 es = EarlyStopping(monitor='loss', patience=7, mode='min', verbose=2)
 
 model.compile(loss = 'mse', optimizer='adam', metrics=['mae']) 
-hist = model.fit(x1_train, [y1_train, y2_train], epochs=100, batch_size=8, verbose=1, validation_split=0.1, callbacks=[es])
+hist = model.fit(x1_train, [y1_train, y2_train], epochs=100, batch_size=8, verbose=0, validation_split=0.1, callbacks=[es])
 # hist.history.keys(): dict_keys(['loss', 'val_loss'])
 
 # 4. Evaluation, Prediction
@@ -64,12 +69,11 @@ print('loss : ', result[0])
 print('metrics["mae"] : ', result[1])
 
 # 5. Visualization
-import matplotlib.pyplot as plt
 
 plt.plot(hist.history['loss'], color='green')
 plt.plot(hist.history['val_loss'], color='red')
 plt.title('Loss, Validation_Loss')
 plt.xlabel('Epochs')
 plt.ylabel('Loss/ Val_Loss')
-plt.legend(['Training_loss', 'Valid_loss'])
+plt.legend(['훈련중 오차', '검증 오차'])
 plt.show()
