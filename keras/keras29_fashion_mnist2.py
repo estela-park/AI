@@ -45,7 +45,7 @@ model.add(Dense(10, activation='softmax'))
 # 3. compilation & training
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-es = EarlyStopping(monitor='loss', patience=10, mode='min', verbose=2)
+es = EarlyStopping(monitor='val_loss', patience=20, mode='min', verbose=2)
 
 start = time.time()
 hist = model.fit(x_train, y_train, epochs=100, batch_size=128, verbose=2, validation_split=0.15, callbacks=[es])
@@ -58,7 +58,7 @@ print('it took', end/60, 'minutes and', end%60,'seconds')
 print('entropy:', loss[0],'accuracy:', loss[1])
 
 '''
-epochs=38, batch_size=128, stopped early 
-it took 2 minutes and 34 seconds
-entropy: 0.6080189943313599 accuracy: 0.014998302794992924
+epochs=24, batch_size=128, stopped early
+it took 1 minute and 13 seconds
+entropy: 0.6042917966842651 accuracy: 0.9204000234603882
 '''

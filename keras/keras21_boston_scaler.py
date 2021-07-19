@@ -13,9 +13,6 @@ y = dataset.target
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85, random_state=82)
 
-for i in range(13):
-  print(np.std(x_train[i]))
-
 max_abs_scaler = MaxAbsScaler()
 max_abs_scaler.fit(x_train)
 x_train_ma = max_abs_scaler.transform(x_train)
@@ -79,11 +76,6 @@ r2_ma = r2_score(y_test, predict_ma)
 r2_rb = r2_score(y_test, predict_rb)
 r2_pt = r2_score(y_test, predict_pt)
 r2_qt = r2_score(y_test, predict_qt)
-
-print('for maxabsolute scaler, loss:', loss_ma, 'accuracy:', r2_ma)
-print('for robust scaler, loss:', loss_rb, 'accuracy:', r2_rb)
-print('for power transformer, loss:', loss_pt, 'accuracy:', r2_pt)
-print('for quantile transformer, loss:', loss_qt, 'accuracy:', r2_qt)
 
 '''
 Before scaling,

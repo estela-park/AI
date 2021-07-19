@@ -48,7 +48,7 @@ model.add(Dense(100, activation='softmax'))
 # 3. comple fit // metrics 'acc'
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 
-es = EarlyStopping(monitor='val_acc', patience=12, mode='max', verbose=2)
+es = EarlyStopping(monitor='val_acc', patience=16, mode='max', verbose=2)
 
 start = time.time()
 hist = model.fit(x_train, y_train, epochs=100, batch_size=64, verbose=2, validation_split=0.15, callbacks=[es])
