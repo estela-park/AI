@@ -6,9 +6,6 @@ from tensorflow.keras.layers import Dense, SimpleRNN
 x = np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6]])
 y = np.array([4,5,6,7])
 
-
-ilayer = np.array([1, 2, 3])
-print(ilayer)
 x = x.reshape(4, 3, 1)
 
 # Modeling
