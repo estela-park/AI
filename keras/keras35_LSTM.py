@@ -20,6 +20,9 @@ model.add(Dense(1))
 model.summary()
 
 '''
+param = (units(units<Hw> + features<Iw> + bias)) * 4
+                                                   > forget_gate, input_gate, relevance_gate, output_gate 
+_________________________________________________________________ 
 Layer (type)                 Output Shape              Param #
 =================================================================
 lstm (LSTM)                  (None, 10)                520

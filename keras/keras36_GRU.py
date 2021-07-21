@@ -20,6 +20,12 @@ model.add(Dense(1))
 model.summary()
 
 '''
+param = (units(units<Hw> + features<Iw> + bias)) * 3
+                                                   > input_gate, relevance_gate
+> forget: replaced with 1 - update_gate
+  > both forget and update are products of sigmoid fn
+  > but forget parameters are counted in the model.summary()
+> no output gate: Ht = Ct
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
