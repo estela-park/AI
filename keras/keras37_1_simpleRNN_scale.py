@@ -18,8 +18,6 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(8, activation='relu'))
-# model.add(Dense(15, activation='relu'))
-# model.add(Dense(5, activation='relu'))
 model.add(Dense(1))
 
 model.summary()

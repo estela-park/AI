@@ -53,5 +53,8 @@ result = model.predict(x_test)
 print(f'prediction for [50 60 70]: {result}')
 
 '''
+-without 'relu'
 prediction for [50 60 70]: [[72.77011]]
+-with 'relu'
+prediction for [50 60 70]: [[83.86038]] *stopped at 38
 '''
