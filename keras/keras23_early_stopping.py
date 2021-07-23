@@ -5,8 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
-
-name_f = font_manager.FontProperties(fname='C:\Windows\Fonts\Gulim Regular')
 rc('font', family='Malgun Gothic')
 
 # Data 

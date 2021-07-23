@@ -1,4 +1,3 @@
-from re import A
 import numpy as np
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, SimpleRNN, Input, concatenate
@@ -29,7 +28,10 @@ hl_r = Dense(8, activation='relu')(hl_r)
 outL_l = Dense(1, activation='relu')(hl_l)
 outL_r = Dense(1, activation='relu')(hl_r)
 outL = concatenate([outL_l, outL_r])
+outL = Dense(10, activation='relu')(outL)
+outL = Dense(10, activation='relu')(outL)
 outL = Dense(1)(outL)
+
 
 model = Model(inputs=[inL_l, inL_r], outputs=[outL])
 model.summary()
@@ -46,5 +48,8 @@ print('time spent:',end,'seconds')
 print('prediction:',predict)
 
 '''
-prediction: [[77.840256]] * stopped at 46, took 3 seconds
+prediction: [77.840256] *stopped at 46, took 3 seconds
+-added layers after merging
+prediction: [75.25905]  *stopped at 107, took 4.6 seconds
+prediction: [76.43602]  *stopped at 89, took 4.2 seconds
 '''

@@ -60,5 +60,5 @@ print('for maxabs, accuracy:', loss)
 DNN
 -for robust, accuracy: [0.41252321004867554, 0.9824561476707458]
 CNN batch: 32, stopped early at 99, it took 18 seconds
-for maxabs, accuracy: [0.30689477920532227, 0.930232584476471]   
+-for maxabs, accuracy: [0.30689477920532227, 0.930232584476471]   
 '''
