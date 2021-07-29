@@ -1,8 +1,6 @@
 import numpy as np
 import time
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv2D, Flatten
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -19,21 +17,22 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 xy_train = train_datagen.flow_from_directory(
-    '../data/brain//train/',
+    '../_data/catNdog/train',
     target_size=(150, 150),
     batch_size=5,
     class_mode='binary',
+    shuffle=True,
 )
+# Found 8005 images belonging to 2 classes.
 
-
-model = Sequential()
-model.add(Conv2D(32, (2, 2), input_shape=(150, 150, 3), activation='relu'))
-model.add(Flatten())
-model.add(Dense(1, activation='sigmoid'))
-
-model.summary()
-
-model.compile(loss='binary-crossentropy', optimizer='adam', metrics=['acc'])
+xy_test = test_datagen.flow_from_directory(
+    '../_data/catNdog/test',
+    target_size=(150, 150),
+    batch_size=5,
+    class_mode='binary',
+    shuffle=True,
+)
+# Found 2023 images belonging to 2 classes.
 
 start = time.time()
 # model.fit(xy_train[:][0], xy_train[:][1])
@@ -44,8 +43,3 @@ hist = model.fit_generator(xy_train, epochs=24, steps_per_epoch=32, validation_d
 )
 # steps_per_epoch=the number of images/batch<as specified in generator>                   
 end = time.time() - start
-
-acc = hist.history['acc']
-val_acc = hist.history['val_acc']
-loss = hist.history['loss']
-val_loss = hist.history['val_loss']

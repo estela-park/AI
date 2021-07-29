@@ -97,7 +97,7 @@ temp = tf.argmax(temp, axis=1)
 df = pd.DataFrame(temp)
 df['index'] = np.array(range(45654, 54785))
 df.rename(columns={0:'topic_idx'}, inplace=True)
-df = df.set_index('index')
+df =df.set_index('index')
 f_path = f'./Dacon/_save/{acc[1]}_{i}_{date_time}.csv'
 df.to_csv(f_path)
 
