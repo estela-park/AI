@@ -24,7 +24,7 @@ hl = LSTM(32)(hl)
 outputL = Dense(1, activation='sigmoid')(hl)
 
 model = Model(inputs=inputL, outputs=outputL)
-
+model.summary()
 start = time.time()
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 model.fit(pad_x, labels, epochs=120, batch_size=16)
@@ -48,6 +48,8 @@ _________________________________________________________________
 dense (Dense)                (None, 1)                 33
 =================================================================
 Total params: 5,973
+Trainable params: 5,973
+Non-trainable params: 0 
 acc: 1.0
 time taken: 3 seconds
 '''
