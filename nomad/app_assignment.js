@@ -1,27 +1,33 @@
-const colors = ["red", "yellow", "blue", "magenta", "lavender"];
-const title = document.querySelector("#title");
+const widthO = window.outerWidth
+const widthI = window.innerWidth
 
-function handleMouseEnter() {
-  title.innerText = "The pointer is here";
-  title.style.color = colors[0];
-}
+const h1 = document.querySelector('div h1')
+const h2 = document.querySelector('h2')
 
-function handleMouseLeaving() {
-  title.innerText = "The pointer is leaving";
-  title.style.color = colors[2];
-}
-
-function handleContextMenu() {
-  title.innerText = "This has been clicked with right button";
-  title.style.color = colors[3];
-}
+h1.innerText = widthI
+h2.innerText = widthO
 
 function handleWindowResize() {
-  title.innerText = "The size of window is adjusted";
-  title.style.color = colors[4];
+  if (widthO < 500) {
+    document.body.style.backgroundColor = "blue";
+  } else if (widthO < 700) {
+    document.body.style.backgroundColor = "purple";
+  } else {
+    document.body.style.backgroundColor = "yellow";
+  }
+
+  if (widthI < 700) {
+    document.body.style.backgroundColor = "blue";
+  } else if (widthI < 1100) {
+    document.body.style.backgroundColor = "purple";
+  } else {
+    document.body.style.backgroundColor = "yellow";
+  }
 }
 
-title.addEventListener("mouseenter", handleMouseEnter);
-title.addEventListener("mouseleave", handleMouseLeaving);
+console.dir(h1)
+console.dir(window)
+console.dir(document)
+console.dir(document.body)
+
 window.addEventListener("resize", handleWindowResize);
-document.addEventListener("contextmenu", handleContextMenu);
