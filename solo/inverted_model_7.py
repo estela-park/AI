@@ -50,10 +50,9 @@ x3 = np.array(data_PV['0'])[:-14].reshape(95, 1)
 # Modelling
 input_x1 = Input(shape=(10, 1))
 hl_x1 = Conv1D(48, 2, activation='relu', padding='same')(input_x1)
-hl_x1 = Dropout(0.25)(hl_x1)
-hl_x1 = Conv1D(24, 2, activation='relu')(hl_x1)
 hl_x1 = MaxPool1D()(hl_x1)
-hl_x1 = GlobalAveragePooling1D()(hl_x1)
+hl_x1 = Dropout(0.2)(hl_x1)
+hl_x1 = LSTM(24,activation='relu')(hl_x1)
 
 input_x2 = Input(shape=(1))
 hl_x2 = Dense(24, activation='relu')(input_x2)
@@ -77,7 +76,7 @@ model.compile(loss='mse', optimizer='adam')
 for i in range(200):
     date = datetime.datetime.now()
     date_time = date.strftime('%m%d-%H%M')
-    f_path = f'../_save/_solo/test_{date_time}.h5'
+    f_path = f'../_save/_solo/test_{date_time}_{i}.h5'
 
     es = EarlyStopping(monitor='val_loss', patience=36, mode='auto', verbose=2, restore_best_weights=True)
 

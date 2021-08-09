@@ -38,8 +38,8 @@ data_TF = np.array(data_TF['도착지방향총교통량'])
 # multiplying with weight
 data_2 = data_SC[:-3] * data_TF[15:]
 # 4/17 ~ 7/31 (106,)
-x2 = np.array(data_2[10:-1]).reshape(95, 1)
-# 4/30 ~ 8/2 (95,)
+x2 = np.array(data_2[11:]).reshape(95, 1)
+# 4/29 ~ 8/1 (95,)
 
 # PusanVaccination: 4/17 ~ 8/3, x3
 data_PV = pd.read_csv('../_save/_solo/vax.csv', encoding='EUC-KR')
@@ -49,7 +49,7 @@ x3 = np.array(data_PV['0'])[:-14].reshape(95, 1)
 
 # Modelling
 input_x1 = Input(shape=(10, 1))
-hl_x1 = Conv1D(48, 2, activation='relu', padding='same')(input_x1)
+hl_x1 = LSTM(48, activation='relu', return_sequences=True)(input_x1)
 hl_x1 = Dropout(0.25)(hl_x1)
 hl_x1 = Conv1D(24, 2, activation='relu')(hl_x1)
 hl_x1 = MaxPool1D()(hl_x1)
@@ -69,7 +69,7 @@ outL = Dense(6, activation='relu')(outL)
 outL = Dense(1)(outL)
 
 model = Model(inputs=[input_x1, input_x2, input_x3], outputs=[outL])
-
+# plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 # Compilation & Fitting
 # loss: mse, optimizer: adam, batch: 16, validation: 0.15
 model.compile(loss='mse', optimizer='adam')
