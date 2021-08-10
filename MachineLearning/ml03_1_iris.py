@@ -20,7 +20,7 @@ y = dataset.target
 # in SK's model, classification task doesn't require one-hot vector for its label
 # y = to_categorical(y)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85) # , random_state=72
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.85)
 
 max_abs_scaler = MaxAbsScaler()
 max_abs_scaler.fit(x_train)
