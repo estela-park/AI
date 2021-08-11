@@ -34,7 +34,7 @@ model_ma = LinearSVC()
 # Linear SVC doesn't require compiling
 # model_ma.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-# except data, most are set default
+# except data, most parameters are set default
 model_ma.fit(x_train_ma, y_train)
 
 # evaluate => score, it gives back accuracy.
