@@ -61,4 +61,7 @@ it took 40 seconds
 entropy: 0.17585872113704681 accuracy: 0.948190450668335
 
 GridSearch with PCA 95% explanation
+  >> Fitting 5 folds for each of 279 candidates, totalling 1395 fits
+it took 3 hours, 31 minutes and 24 seconds
+model.score: 0.9688571428571429
 '''
