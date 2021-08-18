@@ -185,7 +185,7 @@ it took 1.8676807284355164 minutes and 52.06084370613098 seconds
 for stdS, accuracy: [2.875603437423706, 0.6217687129974365]
 for robust, accuracy: [2.343806743621826, 0.6272108554840088]
 for powerT, accuracy: [2.84159517288208, 0.646258533000946]
-- model stopped too early, alteree patience
+- model stopped too early, altered patience
 it took 2.424021311601003 minutes and 25.44127869606018 seconds
 for stdS, accuracy: [3.0749671459198, 0.6272108554840088]
 for robust, accuracy: [3.2979772090911865, 0.6448979377746582]
