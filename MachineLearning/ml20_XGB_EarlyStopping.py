@@ -19,13 +19,13 @@ x_train_mm = scaler_mm.fit_transform(x_train)
 x_test_mm = scaler_mm.transform(x_test)
 
 # 2. Modelling
-model = XGBRegressor(n_estimators=240, learning_rate=0.01, n_jobs=1)
+model = XGBRegressor(n_estimators=2400, learning_rate=0.01, n_jobs=1)
 # n_jobs: the number of cores to utiltize
 
 
 # Training & Evaluation
 start = time.time()
-model.fit(x_train_mm, y_train, verbose=1, eval_metric='rmse', eval_set=[(x_test_mm, y_test)], early_stopping_rounds=8)
+model.fit(x_train_mm, y_train, verbose=1, eval_metric='rmse', eval_set=[(x_test_mm, y_test)], early_stopping_rounds=4)
 # early_stopping_rounds corresponds to patience
 end = time.time() - start
 
@@ -35,3 +35,13 @@ r2 = r2_score(y_test, predict)
 print('*****************With MinMaxScaler*****************')
 print('it took', end//60, 'minutes and', end%60,'seconds')
 print('model.score:', score, '& model.R2score:', r2)
+
+'''
++++++++++epochs=2400, early_stopping_rounds=4, stopped @618+++++++++
+[0]     validation_0-rmse:23.05024
+...
+[618]   validation_0-rmse:2.19458
+*****************With MinMaxScaler*****************
+it took 0.0 minutes and 0.8225910663604736 seconds
+model.score: 0.9252966909900735 & model.R2score: 0.9252966909900735
+'''

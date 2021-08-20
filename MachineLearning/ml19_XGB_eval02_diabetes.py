@@ -60,5 +60,21 @@ print('eval.result:', model.evals_result())
 
 
 '''
-
+[0]     validation_0-rmse:168.58931
+...
+[239]   validation_0-rmse:61.67027
+*****************With MinMaxScaler*****************
+it took 0.0 minutes and 0.3281209468841553 seconds
+model.score: 0.37212595262659753 & model.R2score: 0.37212595262659753
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('rmse', [168.58931, ... 61.670269])])}
+[0]     validation_0-rmse:168.58931
+...
+[239]   validation_0-rmse:61.48742
+*****************With StandardScaler*****************
+it took 0.0 minutes and 0.26880335807800293 seconds
+model.score: 0.37584362419142936 & model.R2score: 0.37584362419142936
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('rmse', [168.58931, ... 61.487419])])}
+PS D:\study> 
 '''

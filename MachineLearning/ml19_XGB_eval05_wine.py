@@ -3,7 +3,8 @@ from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics import accuracy_score
-from xgboost import XGBRegressor
+from xgboost import XGBClassifier
+from xgboost.sklearn import XGBClassifier
 
 
 # 1. Data-prep
@@ -24,7 +25,7 @@ x_test_std = scaler_std.transform(x_test)
 
 
 # 2. Modelling
-model = XGBRegressor(n_estimators=240, learning_rate=0.03, n_jobs=1)
+model = XGBClassifier(n_estimators=240, learning_rate=0.03, n_jobs=-1)
 
 
 # 3-1. Training & Evaluation: Minmax
@@ -37,7 +38,7 @@ predict = model.predict(x_test_mm)
 acc = accuracy_score(y_test, predict)
 print('*****************With MinMaxScaler*****************')
 print('it took', end//60, 'minutes and', end%60,'seconds')
-print('model.score:', score, '& model.R2score:', acc)
+print('model.score:', score, '& model.acc:', acc)
 
 print('==========================EVAL==========================')
 print('eval.result:', model.evals_result())
@@ -53,12 +54,29 @@ predict = model.predict(x_test_std)
 acc = accuracy_score(y_test, predict)
 print('*****************With StandardScaler*****************')
 print('it took', end//60, 'minutes and', end%60,'seconds')
-print('model.score:', score, '& model.R2score:', acc)
+print('model.score:', score, '& model.acc:', acc)
 
 print('==========================EVAL==========================')
 print('eval.result:', model.evals_result())
 
 
 '''
+[0]     validation_0-mlogloss:1.06285
+...
+[239]   validation_0-mlogloss:0.05435
+*****************With MinMaxScaler*****************
+it took 0.0 minutes and 0.1994316577911377 seconds
+model.score: 1.0 & model.acc: 1.0
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('mlogloss', [1.062854, ... 0.054354])])}
 
+
+[0]     validation_0-mlogloss:1.06285
+...
+[239]   validation_0-mlogloss:0.05435
+*****************With StandardScaler*****************
+it took 0.0 minutes and 0.18039703369140625 seconds
+model.score: 1.0 & model.acc: 1.0
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('mlogloss', [1.062854, ... 0.054354])])}
 '''

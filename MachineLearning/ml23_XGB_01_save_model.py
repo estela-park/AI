@@ -33,3 +33,5 @@ print('it took', end//60, 'minutes and', end%60,'seconds')
 print('model.score:', score, '& model.R2score:', r2)
 
 model.save_model('../_save/_XGB/ml23_save_model.dat')
+
+# where it is saved, model.score: 0.8159750970042733 & model.R2score: 0.8159750970042733

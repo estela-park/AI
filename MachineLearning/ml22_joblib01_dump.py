@@ -36,3 +36,5 @@ print('it took', end//60, 'minutes and', end%60,'seconds')
 print('model.score:', score, '& model.R2score:', r2)
 
 joblib.dump(model, '../_save/_XGB/m22_joblib.dat')
+
+# model.score: 0.8159750970042733 & model.R2score: 0.8159750970042733

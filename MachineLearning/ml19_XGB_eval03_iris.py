@@ -8,7 +8,7 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics import accuracy_score
-from xgboost import XGBRegressor
+from xgboost import XGBClassifier
 
 
 # 1. Data-prep
@@ -29,7 +29,7 @@ x_test_std = scaler_std.transform(x_test)
 
 
 # 2. Modelling
-model = XGBRegressor(n_estimators=240, learning_rate=0.03, n_jobs=1)
+model = XGBClassifier(n_estimators=240, learning_rate=0.03, n_jobs=-1)
 
 
 # 3-1. Training & Evaluation: Minmax
@@ -42,7 +42,7 @@ predict = model.predict(x_test_mm)
 acc = accuracy_score(y_test, predict)
 print('*****************With MinMaxScaler*****************')
 print('it took', end//60, 'minutes and', end%60,'seconds')
-print('model.score:', score, '& model.R2score:', acc)
+print('model.score:', score, '& model.acc:', acc)
 
 print('==========================EVAL==========================')
 # gives result for every step in ordered dict, list hist.history in tensorflow.keras
@@ -59,12 +59,28 @@ predict = model.predict(x_test_std)
 acc = accuracy_score(y_test, predict)
 print('*****************With StandardScaler*****************')
 print('it took', end//60, 'minutes and', end%60,'seconds')
-print('model.score:', score, '& model.R2score:', acc)
+print('model.score:', score, '& model.acc:', acc)
 
 print('==========================EVAL==========================')
 print('eval.result:', model.evals_result())
 
 
 '''
+[0]     validation_0-mlogloss:1.06185
+...
+[239]   validation_0-mlogloss:0.35006
+*****************With MinMaxScaler*****************
+it took 0.0 minutes and 0.14882135391235352 seconds
+model.score: 0.9130434782608695 & model.acc: 0.9130434782608695
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('mlogloss', [1.061854, ... 0.350056])])}
 
+[0]     validation_0-mlogloss:1.06185
+...
+[239]   validation_0-mlogloss:0.35016
+*****************With StandardScaler*****************
+it took 0.0 minutes and 0.16755104064941406 seconds
+model.score: 0.9130434782608695 & model.acc: 0.9130434782608695
+==========================EVAL==========================
+eval.result: {'validation_0': OrderedDict([('mlogloss', [1.061854, ... 0.350157])])}
 '''

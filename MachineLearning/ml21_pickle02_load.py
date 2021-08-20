@@ -23,3 +23,5 @@ score = model.score(x_test_mm, y_test)
 predict = model.predict(x_test_mm)
 r2 = r2_score(y_test, predict)
 print('model.score:', score, '& model.R2score:', r2)
+
+# model.score: 0.8159750970042733 & model.R2score: 0.8159750970042733
