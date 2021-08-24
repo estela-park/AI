@@ -16,6 +16,12 @@ model.add(Dense(1))
 
 print(model.weights)
 # take kernel as an array of weight for the given connections
+# the number of bias equals to the number of nodes later layer,
+#   it adds bias to a certain node indiscriminately
+
+print(model.trainable_weights)
+# model.weights == model.trainable_weights
+# every parameter is trainable
 
 '''
 Model: "sequential"

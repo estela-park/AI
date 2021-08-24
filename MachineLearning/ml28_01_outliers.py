@@ -35,3 +35,5 @@ def outliers(data_out):
 aaa = np.array([1, 2, -1000, 4, 5, 6, 7, 8, 90, 100, 500])
 outlier_loc = outliers(aaa)
 print('Indexes of outliers:', outlier_loc)
+
+# Indexes of outliers: (array([ 2, 10], dtype=int64),)

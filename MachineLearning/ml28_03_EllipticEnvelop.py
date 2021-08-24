@@ -1,5 +1,5 @@
-# EllipticEnvelope 원리 찾아서 정리해놓기
-
+# EllipticEnvelope
+# 
 # Assuming that the data comes from a known distribution (e.g. data are Gaussian distributed), 
 # data should fit an ellipse to the central data points.
 # The inlier data are Gaussian distributed.
