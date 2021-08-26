@@ -18,8 +18,9 @@ model.summary()
 
 # Compilation & Training
 model.compile(loss='mse', optimizer='adam')
-model.fit(x, y, epochs=100, batch_size=3)
+model.fit(x, y, epochs=800, batch_size=3)
 
 # Prediction
 result = model.predict(np.array([[[5],[6],[7]]]))
 print(f'prediction for [5 6 7]: {result}')
+# prediction for [5 6 7]: [[7.3158984]]

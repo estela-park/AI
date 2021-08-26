@@ -56,5 +56,6 @@ print('loss:',loss)
 
 
 '''
-
+it took 12 seconds
+loss: 65.36707305908203
 '''

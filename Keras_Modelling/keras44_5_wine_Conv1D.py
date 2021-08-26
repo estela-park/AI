@@ -1,14 +1,12 @@
 import time
 import pandas as pd
-from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, Dropout, GlobalAveragePooling1D, MaxPool1D
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
-datasets = pd.read_csv('../_data/winequality-white.csv', sep=';', index_col=None, header=0 ) 
+datasets = pd.read_csv('../_data/white_wine.csv', sep=';', index_col=None, header=0 ) 
 # (4898, 12)
 
 x = datasets.iloc[:, 0:11] 
@@ -21,7 +19,6 @@ y = enc.fit_transform(y).toarray()
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.15, random_state=24)
 
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, MaxAbsScaler, QuantileTransformer, PowerTransformer
 scaler = StandardScaler(with_std=False)
 scaler.fit(x_train) 
 x_train = scaler.transform(x_train) 
@@ -50,12 +47,13 @@ model.add(GlobalAveragePooling1D())
 model.add(Dense(7, activation="softmax"))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='acc')
-
-es = EarlyStopping(monitor='val_loss', patience=20, mode='min', verbose=1)
-
+es = EarlyStopping(monitor='loss', patience=48, mode='min', verbose=2, restore_best_weights=True)
 start = time.time()
-hist = model.fit(x_train, y_train, epochs=240, batch_size=128, verbose=2,  validation_split=0.15, callbacks=[es])
+model.fit(x_train, y_train, epochs=240, batch_size=32, verbose=2, validation_split=0.2, callbacks=[es])
 end = time.time() - start
 
 loss = model.evaluate(x_test, y_test)
-print('it took',end,'seconds with loss:',loss)
+print('it took',end//1,'seconds with loss:', loss[0], 'accuracy:', loss[1])
+
+# it took 3 minutes and 15 seconds 
+# with loss: 1.5901411771774292 accuracy: 0.5768707394599915

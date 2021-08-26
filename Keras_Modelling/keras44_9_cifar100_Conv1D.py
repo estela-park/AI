@@ -27,23 +27,26 @@ y_train = enc.fit_transform(y_train).toarray()
 y_test = enc.transform(y_test).toarray()
 
 model = Sequential()
-model.add(Conv1D(filters=32, kernel_size=2, padding='same', activation='relu' ,input_shape=(32*32, 3))) 
-model.add(Conv1D(32, 2, padding='same', activation='relu'))                   
+model.add(Conv1D(filters=256, kernel_size=2, padding='same', activation='relu' ,input_shape=(32*32, 3))) 
+model.add(Conv1D(256, 2, padding='same', activation='relu'))                   
 model.add(MaxPool1D())                                         
-model.add(Conv1D(64, 2, padding='same', activation='relu'))
+model.add(Conv1D(128, 2, padding='same', activation='relu'))
 model.add(Dropout(0.25))                   
-model.add(Conv1D(64, 2, padding='same', activation='relu'))    
+model.add(Conv1D(128, 2, padding='same', activation='relu'))    
 model.add(GlobalAveragePooling1D())                                            
-model.add(Dense(124, activation='relu'))
-model.add(Dense(10, activation='softmax'))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(256, activation='selu'))
+model.add(Dense(128, activation='selu'))
+model.add(Dense(100, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='acc')
-
-es = EarlyStopping(monitor='val_loss', patience=24, mode='min', verbose=2)
-
+es = EarlyStopping(monitor='val_loss', patience=16, mode='min', verbose=2, restore_best_weights=True)
 start = time.time()
-model.fit(x_train, y_train, epochs=240, batch_size=64, verbose=2, validation_split=0.15, callbacks=[es])
+model.fit(x_train, y_train, epochs=360, batch_size=32, verbose=2, validation_split=0.2, callbacks=[es])
 end = time.time() - start
 
 loss = model.evaluate(x_test, y_test)
-print('it took', end, 'seconds with loss:', loss)
+print('it took',end//1,'seconds with loss:', loss[0], 'accuracy:', loss[1])
+
+# it took 11 minutes and 41 seconds 
+# with loss: 2.832 accuracy: 0.3026

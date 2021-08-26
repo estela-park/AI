@@ -2,9 +2,11 @@ import time
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MaxAbsScaler
+from sklearn.metrics import r2_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, Dropout, GlobalAveragePooling1D, MaxPool1D
 from tensorflow.keras.callbacks import EarlyStopping
+
 
 
 datasets = load_diabetes()
@@ -37,15 +39,17 @@ model.add(Dense(1))
 
 
 model.compile(loss='mse', optimizer='adam')
-es = EarlyStopping(monitor='val_loss', patience=50, mode='min', verbose=1)
+
+es = EarlyStopping(monitor='val_loss', patience=48, mode='min', verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.fit(x_train, y_train, epochs=240, batch_size=32, verbose=2, validation_split=0.15, callbacks=[es])
 end = time.time() - start
 
 loss = model.evaluate(x_test, y_test)
-print('it took',end,'seconds with loss:',loss)
+print('it took',end//1,'seconds with loss:', loss)
+r2 = r2_score(y_test, model.predict(x_test))
+print('R2 score:', r2)
 
-'''
-
-'''
+# it took 12 seconds with loss: 3652.457275390625
+# R2 score: 0.385958354247822

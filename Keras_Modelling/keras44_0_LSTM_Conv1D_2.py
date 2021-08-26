@@ -53,5 +53,11 @@ print('it took', end/60, 'minutes and', end%60,'seconds')
 print('loss:',loss)
 
 '''
+Conv1D
+it took 12 seconds
+loss: 65.36707305908203
 
+**C1D-LSTM(return_seq)-C1D
+it 10 seconds
+loss: 31.01555824279785
 '''

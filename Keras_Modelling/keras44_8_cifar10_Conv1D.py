@@ -34,16 +34,22 @@ model.add(Conv1D(64, 2, padding='same', activation='relu'))
 model.add(Dropout(0.25))                   
 model.add(Conv1D(64, 2, padding='same', activation='relu'))    
 model.add(GlobalAveragePooling1D())                                            
-model.add(Dense(124, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='selu'))
+model.add(Dropout(0.25)) 
+model.add(Dense(32, activation='selu'))
+model.add(Dropout(0.25)) 
+model.add(Dense(16, activation='selu'))
 model.add(Dense(10, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='acc')
-
-es = EarlyStopping(monitor='val_loss', patience=24, mode='min', verbose=2)
-
+es = EarlyStopping(monitor='val_loss', patience=8, mode='min', verbose=2, restore_best_weights=True)
 start = time.time()
-model.fit(x_train, y_train, epochs=240, batch_size=128, verbose=2, validation_split=0.15, callbacks=[es])
+model.fit(x_train, y_train, epochs=240, batch_size=32, verbose=2, validation_split=0.2, callbacks=[es])
 end = time.time() - start
 
 loss = model.evaluate(x_test, y_test)
-print('it took', end, 'seconds with loss:', loss)
+print('it took',end//1,'seconds with loss:', loss[0], 'accuracy:', loss[1])
+
+# it took 5 minutes and 26 seconds 
+# with loss: 1.2629836797714233 accuracy: 0.5472000241279602
