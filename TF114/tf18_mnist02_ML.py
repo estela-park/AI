@@ -42,7 +42,7 @@ hypothesis = tf.nn.softmax(tf.matmul(hidden3, W4) + b4)
 
 objective = tf.reduce_mean(-tf.reduce_sum(y*tf.log(hypothesis), axis=1))
 
-optimizer = tf.compat.v1.train.AdadeltaOptimizer(learning_rate=27e-2)
+optimizer = tf.compat.v1.train.AdadeltaOptimizer(learning_rate=35e-2)
 train = optimizer.minimize(objective)
 
 sss = tf.compat.v1.Session()

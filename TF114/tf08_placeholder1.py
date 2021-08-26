@@ -30,3 +30,9 @@ for step in range(2001):
     # _, loss_val, W_val, b_val = sss.run([train, loss, W, b], feed_dict={x_train:[1, 2, 3], y_train:[1, 2, 3]})
     # if step % 20 == 0:
     #     print(step, loss_val, W_val, b_val)
+
+'''
+1960 4.1102685e-05 [1.0074282] [-0.01688612]
+1980 3.732971e-05 [1.0070792] [-0.01609252]
+2000 3.3904245e-05 [1.0067466] [-0.01533634]
+'''

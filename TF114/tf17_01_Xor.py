@@ -31,3 +31,9 @@ for epoch in range(2001):
 
 h, c, a = sss.run([hypothesis, predict, accuracy], feed_dict={x: x_data, y: y_data})
 print(h, c, a)
+
+'''
+[[0.75887156] [0.9044642 ] [0.5272632 ] [0.7703875 ]] 
+[[1.] [1.] [1.] [1.]] 
+accuracy: 0.5
+'''
