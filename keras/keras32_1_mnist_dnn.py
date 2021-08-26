@@ -1,7 +1,10 @@
+import time
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Input, Dropout, Layer, GlobalAveragePooling2D
 from tensorflow.python.keras.layers.core import Flatten
+from sklearn.preprocessing import StandardScaler
+from tensorflow.keras.callbacks import EarlyStopping
 
 # data-set
 
@@ -10,7 +13,6 @@ from tensorflow.python.keras.layers.core import Flatten
 x_train = x_train.reshape(60000, 28*28*1)
 x_test = x_test.reshape(10000, 28*28*1)
 
-from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 
 x_train = scaler.fit_transform(x_train)
@@ -68,10 +70,7 @@ output_c = Layer()(hlc)                         # KerasTensor (None, 10)
 # 3. compilation & training
 model = Model(inputs=[input_l], outputs=[output_1, output_2, output_c])
 
-from tensorflow.keras.callbacks import EarlyStopping
 es = EarlyStopping(monitor='val_loss', patience=15, mode='min', verbose=1)
-
-import time
 
 start = time.time()
 

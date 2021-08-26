@@ -1,8 +1,10 @@
+import time
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Flatten, MaxPool2D, Input, Dropout, Layer, GlobalAveragePooling2D
-from tensorflow.python.keras.layers.core import Flatten
+from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+
 
 # 1. data-set
 
@@ -50,10 +52,7 @@ output_2 = Layer()(hl2)                         # KerasTensor (None, 10)
 # 3. compilation & training
 model = Model(inputs=[input_l], outputs=[output_1, output_2])
 
-from tensorflow.keras.callbacks import EarlyStopping
 es = EarlyStopping(monitor='val_loss', patience=15, mode='min', verbose=1)
-
-import time
 
 start = time.time()
 

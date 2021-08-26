@@ -1,3 +1,4 @@
+import time
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer
@@ -5,7 +6,7 @@ from sklearn.metrics import r2_score
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Dense, Conv1D, MaxPooling1D, Dropout, Flatten, LSTM
 from tensorflow.keras.callbacks import EarlyStopping
-import time
+
 
 datasets = load_diabetes()
 
@@ -39,7 +40,7 @@ model_qt = Model(inputs=[inputL], outputs=[outputL])
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 model_qt.compile(loss='mse', optimizer='adam', metrics=['mae'])
 
-es = EarlyStopping(monitor='loss', mode='min', patience=24, verbose=2)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.fit(x_train, y_train, epochs=360, batch_size=8, validation_split=0.15, callbacks=[es])
@@ -59,3 +60,10 @@ r2_qt = r2_score(y_test, predict_qt)
 print('it took', end/60, 'minutes and', end%60,'seconds')
 print('without scaling, loss:', loss, 'accuracy:', r2)
 print('for quantile transformer, loss:', loss_qt, 'accuracy:', r2_qt)
+
+
+'''
+it took 2 minutes and 6 seconds
+without scaling, loss: [15495.0009765625, 99.39408111572266] accuracy: -1.3465832037205496, ES @46
+for quantile transformer, loss: [5206.095703125, 59.502525329589844] accuracy: 0.21158210508075692, ES @71
+'''

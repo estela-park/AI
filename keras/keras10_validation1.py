@@ -1,6 +1,7 @@
+import time
+import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-import time
 
 x_train = np.array(range(1, 8))
 y_train = np.array(range(1, 8))

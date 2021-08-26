@@ -1,8 +1,8 @@
+import time
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler, RobustScaler, PowerTransformer, OneHotEncoder
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPool1D, GlobalAvgPool1D, Dropout 
 from tensorflow.keras.callbacks import EarlyStopping

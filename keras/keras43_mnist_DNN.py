@@ -1,8 +1,9 @@
+# 3D DNN (keras32: 4D DNN)
+
 import time
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, Dropout, MaxPooling1D
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import OneHotEncoder
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -75,7 +76,10 @@ print('it took', end/60, 'minutes and', end%60,'seconds')
 print('entropy:', loss[0],'accuracy:', loss[1])
 
 '''
-it took 1 minute and 51 seconds
-entropy: 0.06997454166412354 accuracy: 0.9807000160217285
-compared with CNN's performance(entropy: 0.05236193165183067 accuracy: 0.9915000200271606), CNN has slight drag.
+4D DNN w/o GlobalAveragePooling
+ > entropy: 0.19406241178512573 accuracy: 0.9405999779701233
+* 3D DNN w/o GlobalAveragePooling: 1 minute and 51 seconds
+ > entropy: 0.06997454166412354 accuracy: 0.9807000160217285
+CNN
+ > entropy: 0.05236193165183067 accuracy: 0.9915000200271606)
 '''

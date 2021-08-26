@@ -1,9 +1,10 @@
+import time
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Conv1D, Flatten, MaxPool1D, Input, Dropout, Layer, GlobalAveragePooling1D, LSTM
-from tensorflow.python.keras.layers.core import Flatten
-import time
+from tensorflow.keras.callbacks import EarlyStopping
+
 
 # data-set
 (x_train, y_train), (x_test, y_test) = mnist.load_data() 
@@ -26,7 +27,7 @@ y_test = enc.transform(y_test).toarray()
 
 # 2. modeling
 input_l = Input(shape=(28, 28))
-hl = LSTM(32, activation='relu')(input_l)
+hl = LSTM(32, activation='relu', return_sequences=True)(input_l)
 hl = Dropout(0.2)(hl)
 hl = Dense(64, activation='relu')(hl)
 hl = Dropout(0.2)(hl)
@@ -44,14 +45,12 @@ hlc = Conv1D(64, 2, activation='relu')(hlc)
 hlc = Dropout(0.2)(hlc)
 hlc = MaxPool1D()(hlc)
 hlc = GlobalAveragePooling1D()(hlc)
-hlc = Dense(10, activation='softmax')(hlc)
-output_c = Layer()(hlc)                         # KerasTensor (None, 10)
+output_c = Dense(10, activation='softmax')(hlc)
+# output_c = Layer()(hlc)                         # KerasTensor (None, 10)
 
 # 3. compilation & training
 model = Model(inputs=[input_l], outputs=[output_1, output_2, output_c])
-
-from tensorflow.keras.callbacks import EarlyStopping
-es = EarlyStopping(monitor='val_loss', patience=15, mode='min', verbose=1)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
@@ -61,4 +60,21 @@ end = time.time() - start
 # 4. evaluation & prediction
 loss = model.evaluate(x_test, y_test)
 print('it took', end/60, 'minutes and', end%60,'seconds')
-print('entropy:', loss[0],'accuracy:', loss[1])
+print('entropy:', loss)
+
+'''
+DNN w/o GAP   
+    entropy: 0.19406241178512573 accuracy: 0.9405999779701233
+DNN w/h GAP  
+    entropy: 0.27129101753234863 accuracy: 0.9146999716758728
+CNN w/h GAP 
+    entropy: 0.08116108924150467 accuracy: 0.984499990940094
+
+**** 2 LSTM & 1 CNN took 1 hour, 16 minutes and 37 second ****
+LSTM-Flatten
+    entropy: 0.08223655819892883 accuracy: 0.9768000245094299
+LSTM-GAP
+    entropy: 0.07211261242628098 accuracy: 0.9789999723434448
+Conv1D-GAP
+    entropy: 0.10824544727802277 accuracy: 0.9685999751091003
+'''

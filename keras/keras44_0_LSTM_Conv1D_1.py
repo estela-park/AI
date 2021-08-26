@@ -1,10 +1,10 @@
+# Training time-series data with Conv1D instead of LSTM
+# and You can do that!
+
 import numpy as np
 import time
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Dropout, MaxPooling1D, Conv1D
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import OneHotEncoder
+from tensorflow.keras.layers import Dense, Flatten, Conv1D
 from tensorflow.keras.callbacks import EarlyStopping
 
 a = np.array(range(1, 101))
@@ -30,53 +30,23 @@ y_test = test_set[:, 5]
 
 model = Sequential()
 model.add(Conv1D(filters=32, kernel_size=4, input_shape=(5, 1)))
+model.add(Flatten())
 model.add(Dense(32, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(8, activation='relu'))
-model.add(Flatten())
 model.add(Dense(1))
+
 '''
-without Flatten, dimention of layers doesn't change
-_________________________________________________________________   
-Layer (type)                 Output Shape              Param #      
-=================================================================   
-conv1d (Conv1D)              (None, 2, 32)             160
-_________________________________________________________________   
-dense (Dense)                (None, 2, 32)             1056
-_________________________________________________________________   
-dense_1 (Dense)              (None, 2, 16)             528
-_________________________________________________________________   
-dense_2 (Dense)              (None, 2, 16)             272
-_________________________________________________________________   
-dense_3 (Dense)              (None, 2, 8)              136
-_________________________________________________________________   
-dense_4 (Dense)              (None, 2, 1)              9
-=================================================================   
-with Flatten, 
-_________________________________________________________________   
-Layer (type)                 Output Shape              Param #      
-=================================================================   
-conv1d (Conv1D)              (None, 2, 32)             160
-_________________________________________________________________   
-dense (Dense)                (None, 2, 32)             1056
-_________________________________________________________________   
-dense_1 (Dense)              (None, 2, 16)             528
-_________________________________________________________________   
-dense_2 (Dense)              (None, 2, 16)             272
-_________________________________________________________________   
-dense_3 (Dense)              (None, 2, 8)              136
-_________________________________________________________________   
-flatten (Flatten)            (None, 16)                0
-_________________________________________________________________   
-dense_4 (Dense)              (None, 1)                 17
-=================================================================   
+*** without Flatten, dimention of layers doesn't change ***
+adding Dense(1) layer will only shorten the number of nodes to be (None, ... , 1)
 '''
 
 model.compile(loss='mse', optimizer='adam')
+es = EarlyStopping(monitor='loss', mode='min', patience=8, verbose=2, restore_best_weights=True)
 
 start = time.time()
-model.fit(x, y, epochs=240, batch_size=128, verbose=2)
+model.fit(x, y, epochs=240, batch_size=128, verbose=2, callbacks=[es])
 end = time.time() - start
 
 loss = model.evaluate(x_test, y_test)
@@ -84,7 +54,7 @@ loss = model.evaluate(x_test, y_test)
 print('it took', end/60, 'minutes and', end%60,'seconds')
 print('loss:',loss)
 
+
 '''
-it took 0.05636746883392334 minutes and 3.3820481300354004 seconds  
-loss: 2.4351186752319336
+
 '''

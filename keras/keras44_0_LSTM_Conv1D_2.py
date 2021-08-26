@@ -1,10 +1,10 @@
+# Operating on time-series data with C1D-LSTM(return_seq)-C1D
+
+
 import numpy as np
 import time
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Dropout, MaxPooling1D, Conv1D, LSTM
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import OneHotEncoder
+from tensorflow.keras.layers import Dense, Flatten, Conv1D, LSTM
 from tensorflow.keras.callbacks import EarlyStopping
 
 a = np.array(range(1, 101))
@@ -30,35 +30,18 @@ y_test = test_set[:, 5]
 
 model = Sequential()
 model.add(Conv1D(filters=32, kernel_size=4, input_shape=(5, 1)))
+model.add(LSTM(8, return_sequences=True))
+model.add(Conv1D(32, 2))
+model.add(Flatten())
 model.add(Dense(32, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(8, activation='relu'))
-model.add(LSTM(8))
 model.add(Dense(1))
 
-'''
-instead of Flatten layer LSTM do the 3D->2D converting job
-_________________________________________________________________   
-Layer (type)                 Output Shape              Param #      
-=================================================================   
-conv1d (Conv1D)              (None, 2, 32)             160
-_________________________________________________________________   
-dense (Dense)                (None, 2, 32)             1056
-_________________________________________________________________   
-dense_1 (Dense)              (None, 2, 16)             528
-_________________________________________________________________   
-dense_2 (Dense)              (None, 2, 16)             272
-_________________________________________________________________   
-dense_3 (Dense)              (None, 2, 8)              136
-_________________________________________________________________   
-lstm (LSTM)                  (None, 8)                 544
-_________________________________________________________________   
-dense_4 (Dense)              (None, 1)                 9
-================================================================= 
-'''
 
 model.compile(loss='mse', optimizer='adam')
+es = EarlyStopping(monitor='loss', mode='min', patience=8, verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.fit(x, y, epochs=240, batch_size=128, verbose=2)
@@ -70,6 +53,5 @@ print('it took', end/60, 'minutes and', end%60,'seconds')
 print('loss:',loss)
 
 '''
-it took 4 seconds   
-loss: 9958.42578125
+
 '''

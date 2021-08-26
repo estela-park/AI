@@ -1,7 +1,7 @@
+import time
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPool1D, GlobalAvgPool1D, Dropout, LSTM
 from tensorflow.keras.utils import to_categorical
@@ -33,7 +33,7 @@ model_ma.add(GlobalAvgPool1D())
 model_ma.add(Dense(3, activation='softmax'))
 
 start = time.time()
-es = EarlyStopping(monitor='loss', patience=8, mode='min', verbose=2)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 model_ma.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model_ma.fit(x_train_ma, y_train, epochs=240, validation_split=0.15, verbose=2, batch_size=32, callbacks=[es])
 end = time.time() - start
@@ -49,4 +49,6 @@ DNN
 -for maxabs, accuracy: [0.037038467824459076, 1.0]
 CNN stopped early at 54, any other hyper-parameters are set to match
 -for maxabs, accuracy: [0.1542966216802597, 0.9130434989929199]   
+LSTM: stopped early at 104 took 10 seconds
+-for maxabs, accuracy: [0.09124008566141129, 0.95652174949646]
 '''

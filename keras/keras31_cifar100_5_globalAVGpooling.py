@@ -1,13 +1,11 @@
+import time
 from tensorflow.keras.datasets import cifar100
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Input, Dropout, GlobalAveragePooling2D
-from tensorflow.keras.layers import Layer
+from tensorflow.keras.models import  Model
+from tensorflow.keras.layers import Dense, Conv2D, MaxPool2D, Input, Dropout, GlobalAveragePooling2D, Layer
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler, PowerTransformer, QuantileTransformer, OneHotEncoder
-import time
-import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, OneHotEncoder
+
 
 # 1. data set-up
 (x_train, y_train), (x_test, y_test) = cifar100.load_data() 

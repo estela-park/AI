@@ -1,11 +1,12 @@
+import time
 from sklearn.datasets import load_boston
+from sklearn.metrics import r2_score
+from sklearn.preprocessing import QuantileTransformer
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input, Conv2D, MaxPool2D, Dropout, GlobalAveragePooling2D, Layer, Flatten
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
-from sklearn.preprocessing import QuantileTransformer
-import time
+
 
 dataset = load_boston()
 

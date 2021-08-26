@@ -1,10 +1,11 @@
+import time
+import math
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import r2_score
-import time
-import math
+
 
 # compared with LSTM, DNN works better with small-sized and well arranged data like those below
 
@@ -74,6 +75,8 @@ print('prediction:',prediction,', actual data: [101 102 103 104 105]')
 
 
 '''
-it took 3.658822774887085 seconds to train, accuracy(R2): 0.997218339407118 , RMSE: 0.07458767363115082
-prediction: [[101.02439 ] [102.04313 ] [103.06529 ] [104.089745] [105.11421 ]] , actual data: [101 102 103 104 105]
+it took 4 seconds to train
+accuracy(R2): 0.997218339407118 , RMSE: 0.07458767363115082
+prediction: [[101.02439 ] [102.04313 ] [103.06529 ] [104.089745] [105.11421 ]]
+actual data: [101 102 103 104 105]
 '''

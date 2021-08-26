@@ -1,10 +1,10 @@
 import time
+from sklearn.datasets import load_boston
 from sklearn.preprocessing import MaxAbsScaler
+from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, Dropout, GlobalAveragePooling1D, MaxPool1D
-from sklearn.datasets import load_boston
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.model_selection import train_test_split
 
 
 datasets = load_boston()
@@ -46,3 +46,7 @@ y_predict = model.predict([x_test])
 
 loss = model.evaluate(x_test, y_test)
 print('it took',end,'seconds with loss:',loss)
+
+'''
+
+'''

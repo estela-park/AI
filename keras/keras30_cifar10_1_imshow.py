@@ -1,5 +1,7 @@
 from tensorflow.keras.datasets import cifar10
 import matplotlib.pyplot as plt
+
+
 (x_train, y_train), (x_test, y_test) = cifar10.load_data() 
 
 # x:  (50000, 32, 32, 3) (10000, 32, 32, 3)

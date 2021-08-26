@@ -1,10 +1,11 @@
+import time
+import math
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import r2_score
-import time
-import math
+
 
 a = np.array(range(1, 101))
 x_predict = np.array(range(96,106))

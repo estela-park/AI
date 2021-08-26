@@ -1,9 +1,10 @@
+import time
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from tensorflow.keras.callbacks import EarlyStopping
-import time
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+
 
 # 1. data-set
 (x_train, y_train), (x_test, y_test) = cifar10.load_data() 

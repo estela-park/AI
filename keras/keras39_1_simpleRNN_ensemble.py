@@ -1,8 +1,9 @@
+import time
 import numpy as np
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, SimpleRNN, Input, concatenate
 from tensorflow.keras.callbacks import EarlyStopping
-import time
+
 
 x1 = np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],[5,6,7],[6,7,8],[7,8,9],[8,9,10],[9,10,11],[10,11,12],[20,30,40],[30,40,50],[40,50,60]])
 x2 = np.array([[10,20,30],[20,30,40],[30,40,50],[40,50,60],[50,60,70],[60,70,80],[70,80,90],[80,90,100],[90,100,110],[100,110,120],[2,3,4],[3,4,5],[4,5,6]])

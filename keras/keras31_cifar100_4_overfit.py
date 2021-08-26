@@ -3,16 +3,17 @@
 # 1. increase the size of training data(not by reducing valid/test data)
 # 2. normalize the data passed from one layer to another
 # 3. dropout
+
+
+import time
 from tensorflow.keras.datasets import cifar100
-from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Input, Dropout
 from tensorflow.keras.layers import Layer
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler, PowerTransformer, QuantileTransformer, OneHotEncoder
-import time
-import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, OneHotEncoder
+
 
 # 1. data set-up
 (x_train, y_train), (x_test, y_test) = cifar100.load_data() 

@@ -1,3 +1,4 @@
+import time
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer
@@ -5,7 +6,7 @@ from sklearn.metrics import r2_score
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Dense, Conv1D, MaxPooling1D, Dropout, Flatten
 from tensorflow.keras.callbacks import EarlyStopping
-import time
+
 
 datasets = load_diabetes()
 

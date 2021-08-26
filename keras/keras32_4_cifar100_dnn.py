@@ -1,9 +1,10 @@
+import time
 from tensorflow.keras.datasets import cifar100
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Flatten, MaxPool2D, Input, GlobalAveragePooling2D, Dropout, Layer
 from tensorflow.keras.callbacks import EarlyStopping
-import time
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+
 
 
 # 1. data-set

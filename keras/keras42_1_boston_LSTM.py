@@ -1,10 +1,10 @@
 import time
 from sklearn import datasets
+from sklearn.preprocessing import RobustScaler
 from sklearn.datasets import load_boston
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.preprocessing import RobustScaler
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, LSTM, Input
 
@@ -35,7 +35,7 @@ outputL = Dense(1)(hl)
 model = Model(inputs=inputL, outputs=outputL)
 
 model.compile(loss='mse', optimizer='adam')
-es = EarlyStopping(monitor='val_loss', patience=48, mode='min', verbose=2)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.fit(x_train, y_train, epochs=1000, batch_size=13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc, verbose=2, validation_split=0.15, callbacks=[es])
@@ -49,6 +49,5 @@ print('training took',end,'seconds, loss : ', loss, 'R2 score : ', r2)
 
 '''
 Epoch 00215: early stopping
-3/3 [==============================] - 0s 6ms/step - loss: 16.9275
-training took 79.43052101135254 seconds, loss :  16.927509307861328 R2 score :  0.7372268104863597
+training took 79 seconds, loss :  16.927509307861328 R2 score :  0.7372268104863597
 '''

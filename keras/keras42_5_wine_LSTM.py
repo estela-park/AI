@@ -1,13 +1,13 @@
+import time
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import RobustScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPool1D, GlobalAvgPool1D, Dropout, LSTM
 from tensorflow.keras.callbacks import EarlyStopping
 
-dataset = pd.read_csv('../_data/winequality-white.csv', sep=';', header=0)
+dataset = pd.read_csv('../_data/white_wine.csv', sep=';', header=0)
 
 x = dataset.iloc[:, :11] # (4898, 11), DataFrame
 x = np.array(x)
@@ -29,7 +29,7 @@ x_test_rb = robust_scaler.transform(x_test)
 x_test_rb = x_test_rb.reshape(x_test_rb.shape[0], x_test_rb.shape[1], 1)
 
 start = time.time()
-es = EarlyStopping(monitor='val_accuracy', patience=15, mode='max', verbose=2)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 
 model_rb = Sequential()
 model_rb.add(LSTM(32, input_shape=(11, 1), activation='relu', return_sequences=True))
@@ -49,3 +49,13 @@ end = time.time() - start
 
 print('it took', end/60,'minutes and', end%60, 'seconds')
 print('for robust, accuracy:', loss_rb)
+
+
+'''
+DNN
+-for powerT, accuracy: [3.2596006393432617, 0.6503401398658752]
+CNN
+-for stdS, accuracy: [1.1621105670928955, 0.5863945484161377] 
+LSTM: ES @72 , 3 mins & 40 secs
+-for robust, accuracy: [1.0958969593048096, 0.5047619342803955]
+'''

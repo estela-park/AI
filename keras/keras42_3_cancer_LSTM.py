@@ -1,7 +1,7 @@
+import time
 from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, Dropout, MaxPooling1D, GlobalAvgPool1D, LSTM
 from tensorflow.keras.callbacks import EarlyStopping
@@ -33,7 +33,7 @@ model.add(Dense(1, activation="sigmoid"))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics='acc')
 
-es = EarlyStopping(monitor='loss', patience=20, mode='min', verbose=1)
+es = EarlyStopping(monitor='val_loss', mode='min', patience=12, verbose=2, restore_best_weights=True)
 
 start = time.time()
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -52,4 +52,6 @@ DNN
 -for robust, accuracy: [0.41252321004867554, 0.9824561476707458]
 CNN batch: 32, stopped early at 99, it took 18 seconds
 -for maxabs, accuracy: [0.30689477920532227, 0.930232584476471]   
+LSTM: stopped early at 74, it took 1 minute and 7 seconds
+-for maxabs, accuracy: [0.9253537654876709, 0.8720930218696594]
 '''

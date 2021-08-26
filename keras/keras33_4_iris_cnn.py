@@ -1,7 +1,7 @@
+import time
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPool1D, GlobalAvgPool1D, Dropout
 from tensorflow.keras.utils import to_categorical

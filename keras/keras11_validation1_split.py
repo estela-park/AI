@@ -1,7 +1,7 @@
+import time
+import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-import numpy as np
-import time
 from sklearn.model_selection import train_test_split
 
 
