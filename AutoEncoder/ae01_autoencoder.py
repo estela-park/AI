@@ -1,6 +1,5 @@
 # AE stands for AutoEncoder: eliminate weak signals, blurs the image.
 
-import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Model

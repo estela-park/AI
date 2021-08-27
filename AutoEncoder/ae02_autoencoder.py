@@ -1,9 +1,10 @@
-import numpy as np
+# Building functional AutoEncoder
+
 import random
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
-from tensorflow.keras.models import Model, Sequential
-from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
 
 (x_train, _), (x_test, _) = mnist.load_data()
@@ -28,6 +29,13 @@ model.fit(x_train, x_train, epochs=12, batch_size=128, validation_split=0.15)
 decoded_img = model.predict(x_test)
 
 fig, ((ax1, ax2, ax3, ax4, ax5), (ax6, ax7, ax8, ax9, ax10)) = plt.subplots(2, 5, figsize=(20, 7))
+'''
+Returns
+ > fig : ~.figure.Figure
+ > ax : .axes.Axes or array of Axes
+        *ax* can be either a single ~matplotlib.axes.Axes object or an array of Axes objects if more than one subplot was created. 
+        The dimensions of the resulting array can be controlled with the squeeze keyword.
+'''
 random_image = random.sample(range(decoded_img.shape[0]), 5)
 
 for i, ax in enumerate([ax1, ax2, ax3, ax4, ax5]):
@@ -47,4 +55,5 @@ for i, ax in enumerate([ax6, ax7, ax8, ax9, ax10]):
         ax.set_yticks([])
 
 plt.tight_layout()
+# Adjust the padding between and around subplots.
 plt.show()

@@ -1,4 +1,3 @@
-from numpy import fliplr
 from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Flatten, Input

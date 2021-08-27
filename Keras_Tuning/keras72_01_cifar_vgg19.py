@@ -9,8 +9,6 @@
 # FC: one layer deeper      X
 # FC: 1028, 256, 128, 100   ^
 # FC: 2046, 512, 128, 100   O
-# 
-
 
 
 from tensorflow.keras.datasets import cifar10, cifar100

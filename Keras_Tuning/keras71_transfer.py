@@ -39,10 +39,3 @@ print('the number of parameters:',)
 print('the number of trainable parameters:',)
 print('the number of Weights:',len(model.weights))
 print('the number of trainable Weights:',len(model.non_trainable_weights))
-
-
-'''
-
-'''
-
-keras72_0_cifar_.py
