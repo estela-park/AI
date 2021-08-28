@@ -77,9 +77,8 @@ model.add(Conv2D(32, (2, 2), input_shape=(150, 150, 3), activation='relu'))
 model.add(Flatten())
 model.add(Dense(1, activation='sigmoid'))
 
-model.summary()
-
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
+
 
 start = time.time()
 # model.fit(xy_train[:][0], xy_train[:][1])
@@ -88,9 +87,10 @@ hist = model.fit_generator(xy_train, epochs=24, steps_per_epoch=32, validation_d
                            # validation_steps=4: doesn't work solo w/o validation_data
                            # batch_size is not expected since generator already deals with it.
                            callbacks=[es]
-)
-# steps_per_epoch=the number of images/batch<as specified in generator>                   
+       # steps_per_epoch=the number of images/batch<as specified in generator>    
+       )               
 end = time.time() - start
+
 
 acc = hist.history['acc']
 val_acc = hist.history['val_acc']
