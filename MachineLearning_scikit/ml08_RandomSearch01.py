@@ -1,7 +1,7 @@
 '''
 GridSearch looks for the optimal hyper-parameter nondiscriminately, 
 which means it wastes significant amound of time dealing with useless parameters.
-Like a Dropout layer in DNN models, it drops hyper-parameters in random fashion
+Like a Dropout layer in DNN models, RandomSearch drops hyper-parameters in random fashion
 '''
 import time
 from sklearn.datasets import load_iris

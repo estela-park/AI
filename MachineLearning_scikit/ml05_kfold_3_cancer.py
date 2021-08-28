@@ -1,11 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import KFold, cross_val_score
-from sklearn.svm import LinearSVC, SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import LinearSVC
 
 
 # 1: Data-prep

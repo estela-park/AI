@@ -1,10 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import KFold, cross_val_score
-from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
 
 
 # 1: Data-prep

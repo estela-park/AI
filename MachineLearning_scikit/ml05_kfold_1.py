@@ -1,13 +1,7 @@
 import numpy as np
-import time
 from sklearn.datasets import load_iris
 from sklearn.model_selection import KFold, cross_val_score
-from sklearn.svm import LinearSVC, SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 
 
 # 1: Data-prep
@@ -44,10 +38,10 @@ scores = cross_val_score(model, x, y, cv=kfold)
 print('model: RandomForestClassifier, k-value: 5, accuracy:', scores, round(np.mean(scores), 4))
 
 '''
-model: LinearSVC, k-value: 5, accuracy: [1.         1.         0.66666667 0.96666667 0.66666667] 0.86
-model: SVC, k-value: 5, accuracy: [1.         1.         0.83333333 0.93333333 0.7       ] 0.8933
-model: KNeighborsClassifier, k-value: 5, accuracy: [1.         1.         0.83333333 0.93333333 0.8       ] 0.9133
-model: LogisticRegression, k-value: 5, accuracy: [1.         1.         0.86666667 0.93333333 0.83333333] 0.9267
-model: DecisionTreeClassifier, k-value: 5, accuracy: [1.         0.96666667 0.9        0.93333333 0.73333333] 0.9067
-model: RandomForestClassifier, k-value: 5, accuracy: [1.         1.         0.86666667 0.93333333 0.73333333] 0.9067
+model: LinearSVC, k-value: 5, accuracy:              [1. 1.  0.6 0.96666667 0.6] 0.86
+model: SVC, k-value: 5, accuracy:                    [1. 1.  0.8 0.93333333 0.7] 0.8933
+model: KNeighborsClassifier, k-value: 5, accuracy:   [1. 1.  0.8 0.93333333 0.8] 0.9133
+model: LogisticRegression, k-value: 5, accuracy:     [1. 1.  0.8 0.93333333 0.8] 0.9267
+model: DecisionTreeClassifier, k-value: 5, accuracy: [1. 0.9 0.9 0.93333333 0.7] 0.9067
+model: RandomForestClassifier, k-value: 5, accuracy: [1. 1.  0.8 0.93333333 0.7] 0.9067
 '''

@@ -1,12 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_boston
-from sklearn.model_selection import KFold, cross_val_score, cross_val_predict
-from sklearn.svm import LinearSVC, SVC
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import KFold, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import r2_score
 
 
 # 1: Data-prep
