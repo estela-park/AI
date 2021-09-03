@@ -47,4 +47,7 @@ score = model.score(x_test_mm, y_test)
 predict = model.predict(x_test_mm)
 r2 = r2_score(y_test, predict)
 print('it took', end//60, 'minutes and', end%60,'seconds')
-print('model.score:', score, '& model.R2score:', r2)
+print('model.score:', score, '& R2score:', r2)
+
+# it took 3 seconds
+# model.score: 0.81 & R2score: 0.81
