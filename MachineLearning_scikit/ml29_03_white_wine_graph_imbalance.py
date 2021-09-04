@@ -1,3 +1,5 @@
+# this dataset is very imbalanced
+
 import pandas as pd
 import matplotlib.pyplot as plt
 

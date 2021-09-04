@@ -1,17 +1,16 @@
-# When to deal with outliers with quartile ranging, 
-# data may not always conform to normal distribution.
+# managing outliers outside of quartile ranging
+#   that is, data may not always conform to normal distribution.
 #
 # When the data has multiple peaks or is skewed greatly,
-# deleting outliers with standardization distorts the data.
+# deleting outliers according to Gaussian wisdom distorts the data.
 # 
-# Normal quartile range: quadruple of Interquartile Range
+# Normal quartile range: quadruple of Interquartile Range[IQR]
 #
 # Options
-#  > 1. Deletion
-#  > 2. Nan -> bogan?// linear
-#  > 3. Similar to missing value treatment
-#  > 4. Scaler: Robust, Quantile
-#  > 5. Model: Tree-likes, XG, LGBM
+#  > 1. Deletion if the amount of datapoints is not significant
+#  > 2. assign outliers to Nan, then interpolate
+#  > 3. Scaler: Robust, Quantile
+#  > 4. Model: Tree-likes, XG, LGBM
 
 
 import numpy as np
@@ -36,4 +35,11 @@ aaa = np.array([1, 2, -1000, 4, 5, 6, 7, 8, 90, 100, 500])
 outlier_loc = outliers(aaa)
 print('Indexes of outliers:', outlier_loc)
 
+# ***********Quartile Index***********
+# lowest: -1000.0
+# Q1: 3.0
+# Q2: 6.0
+# Q3: 49.0
+# highest: 500.0
+# 
 # Indexes of outliers: (array([ 2, 10], dtype=int64),)

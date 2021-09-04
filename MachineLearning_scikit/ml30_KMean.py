@@ -31,7 +31,7 @@ print(iris_result)
 target  cluster
 0       1          50
 1       0          48
-        2           2 - missed values
-2       0          14 - missed values
+        2           2 - wrong
+2       0          14 - wrong
         2          36
 '''

@@ -1,3 +1,6 @@
+# Merging minor class with less-minor class,
+# only do it when given such authority.
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
