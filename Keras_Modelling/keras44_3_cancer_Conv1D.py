@@ -45,4 +45,7 @@ end = time.time() - start
 loss = model.evaluate(x_test, y_test)
 print('it took',end//1,'seconds with loss:', loss)
 
-# it took 25.0 seconds with loss: 0.22862792015075684, accuracy: 0.9186046719551086
+# it <Conv1D> took 25.0 seconds with loss: 0.2286279201507568, accuracy: 0.9186046719551086
+# DNN                                loss: 0.4125232100486755, accuracy: 0.9824561476707458
+# CNN                                loss: 0.3068947792053222, accuracy: 0.930232584476471
+# LSTM                               loss: 0.9253537654876709, accuracy: 0.8720930218696594

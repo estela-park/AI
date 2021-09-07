@@ -1,8 +1,7 @@
-import numpy as np
+import time
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler, PowerTransformer, QuantileTransformer
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.utils import to_categorical
@@ -110,11 +109,13 @@ for maxabs, accuracy: [0.039518505334854126, 1.0]
 for robust, accuracy: [0.03774683177471161, 0.95652174949646]
 for powerT, accuracy: [0.031904108822345734, 1.0]
 for quantileT, accuracy: [0.04313637316226959, 1.0]
+
 **how predict looks like:
     -[[9.9904639e-01 9.5356849e-04 3.0061298e-09]
       [9.9844283e-01 1.5571439e-03 1.1436463e-08]
       [1.1278500e-03 9.9623919e-01 2.6329122e-03]
     -max element be 1, others 0 -> one-hot vector
+
 ******************** prediction ********************
 [[0. 1. 0.]
  [0. 1. 0.]
@@ -126,6 +127,7 @@ for quantileT, accuracy: [0.04313637316226959, 1.0]
  [1. 0. 0.]
  [0. 1. 0.]
  [0. 1. 0.]]
+
 [[4.5567073e-04 9.9869651e-01 8.4788178e-04]
  [1.3566726e-04 5.6011450e-01 4.3974984e-01]
  [9.9964952e-01 3.5048270e-04 5.5298661e-11]

@@ -40,7 +40,7 @@ np.save('../_save/_npy/k55_y_data_wine.npy', arr=y_data_wine)
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data() 
 # (60000, 28, 28) (60000,) (10000, 28, 28) (10000,)
-print(type(x_train))
+
 x_data_mnist = np.concatenate((x_train, x_test), axis=0)
 y_data_mnist = np.concatenate((y_train, y_test), axis=0)
 

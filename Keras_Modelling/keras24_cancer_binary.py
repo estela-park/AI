@@ -1,10 +1,12 @@
+import time
 import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler, PowerTransformer, QuantileTransformer
 from sklearn.model_selection import train_test_split
-import time
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
+import matplotlib.pyplot as plt
+
 
 dataset = load_breast_cancer()
 
@@ -90,8 +92,6 @@ loss_qt = model_qt.evaluate(x_test_qt, y_test)
 predict_qt = model_qt.predict(x_test_qt)
 
 end = time.time() - start
-
-import matplotlib.pyplot as plt
 
 plt.scatter(np.array(range(114)), predict_ma, color='red')
 plt.scatter(np.array(range(114)), predict_rb, color='yellow')

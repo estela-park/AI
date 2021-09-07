@@ -49,5 +49,7 @@ print('it took',end//1,'seconds with loss:', loss)
 r2 = r2_score(y_test, model.predict(x_test))
 print('R2 score:', r2)
 
-# it took 16 seconds with loss: 47.21376037597656
-# R2 score: 0.4754662342880125
+# it<Conv1D> took 16 seconds with loss: 47.21376037597656, R2 score: 0.4754662342880125
+# LSTM                            loss: 16.92750930786132, R2 score: 0.7372268104863597
+# CNN                             loss: 13.28035545349121, R2 score: 0.8775084879017759
+# DNN                             loss: 11.10914993286132, R2 score: 0.8975346251949831
