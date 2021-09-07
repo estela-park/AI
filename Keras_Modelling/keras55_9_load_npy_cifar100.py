@@ -44,16 +44,16 @@ output_l = Layer()(hl)
 start = time.time()
 model_std = Model(inputs=[input_l], outputs=[output_l])
 model_std.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
-es = EarlyStopping(monitor='acc', patience=8, mode='max', verbose=1)
+es = EarlyStopping(monitor='val_acc', patience=24, mode='max', verbose=1, restore_best_weights=True)
 hist_std = model_std.fit(x_train_std, y_train, epochs=100, batch_size=128, verbose=2, validation_split=0.15, callbacks=[es])
 end = time.time() - start
 
 loss_std = model_std.evaluate(x_test_std, y_test)
 print('it took', end//60,'minutes and', end%60//1, 'seconds, entropy :', loss_std[0], ', accuracy :', loss_std[1])
 
-# 
-# DNN w/o GAP entropy: 3.238 accuracy: 0.2261
-# DNN w/h GAP entropy: 3.914 accuracy: 0.1015
-# CNN         entropy: 4.211 accuracy: 0.3228
-# Conv1D      entropy: 2.832 accuracy: 0.3026
-# LSTM        entropy: 4.247 accuracy: 0.0528
+# it took 2 minutes and 17 seconds, entropy: 2.947, accuracy: 0.3569
+# DNN w/o GAP                       entropy: 3.238, accuracy: 0.2261
+# DNN w/h GAP                       entropy: 3.914, accuracy: 0.1015
+# CNN                               entropy: 4.211, accuracy: 0.3228
+# Conv1D                            entropy: 2.832, accuracy: 0.3026
+# LSTM                              entropy: 4.247, accuracy: 0.0528
