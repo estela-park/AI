@@ -81,5 +81,5 @@ print('entropy:', loss[0],'accuracy:', loss[1])
 * 3D DNN w/o GlobalAveragePooling: 1 minute and 51 seconds
  > entropy: 0.06997454166412354 accuracy: 0.9807000160217285
 CNN
- > entropy: 0.05236193165183067 accuracy: 0.9915000200271606)
+ > entropy: 0.05236193165183067 accuracy: 0.9915000200271606
 '''

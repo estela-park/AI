@@ -51,5 +51,8 @@ end = time.time() - start
 loss = model.evaluate(x_test, y_test)
 print('it took',end//1,'seconds with loss:', loss[0], 'accuracy:', loss[1])
 
-# it took 5 minutes and 26 seconds 
-# with loss: 1.2629836797714233 accuracy: 0.5472000241279602
+# it took 5 mins and 26 secs entropy: 1.2629, accuracy: 0.547
+# DNN w/o GAP                entropy: 1.3354, accuracy: 0.522
+# DNN w/h GAP                entropy: 1.7635, accuracy: 0.362
+# CNN                        entropy: 1.5305, accuracy: 0.744
+# LSTM                       entropy: 2.0673, accuracy: 0.248

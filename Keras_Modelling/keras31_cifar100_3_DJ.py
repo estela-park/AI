@@ -1,4 +1,5 @@
 import time
+import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPool2D, Input, Layer

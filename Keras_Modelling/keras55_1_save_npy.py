@@ -1,6 +1,7 @@
-from sklearn.datasets import load_iris, load_boston, load_breast_cancer, load_diabetes, load_wine
-from tensorflow.keras.datasets import mnist, cifar10, cifar100
 import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris, load_boston, load_breast_cancer, load_diabetes
+from tensorflow.keras.datasets import mnist, cifar10, cifar100
 
 datasets = load_iris()
 x_data_iris = datasets.data   
@@ -30,12 +31,12 @@ y_data_diabetes = datasets.target
 np.save('../_save/_npy/k55_x_data_diabetes.npy', arr=x_data_diabetes)
 np.save('../_save/_npy/k55_y_data_diabetes.npy', arr=y_data_diabetes)
 
-datasets = load_wine()
-x_data_wine = datasets.data   
-y_data_wine = datasets.target 
+datasets = pd.read_csv('../_data/white_wine.csv', sep=';', index_col=None, header=0 ) 
+x = datasets.iloc[:, 0:11] 
+y = datasets.iloc[:, [11]] 
 
-np.save('../_save/_npy/k55_x_data_wine.npy', arr=x_data_wine)
-np.save('../_save/_npy/k55_y_data_wine.npy', arr=y_data_wine)
+np.save('../_save/_npy/k55_x_data_wine.npy', arr=x)
+np.save('../_save/_npy/k55_y_data_wine.npy', arr=y)
 
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data() 
@@ -54,8 +55,8 @@ np.save('../_save/_npy/k55_y_data_mnist.npy', arr=y_data_mnist)
 x_data_cifar10 = np.concatenate((x_train, x_test), axis=0)
 y_data_cifar10 = np.concatenate((y_train, y_test), axis=0)
 
-np.save('../_save/_npy/k55_x_data_mnist.npy', arr=x_data_cifar10)
-np.save('../_save/_npy/k55_y_data_mnist.npy', arr=y_data_cifar10)
+np.save('../_save/_npy/k55_x_data_cifar10.npy', arr=x_data_cifar10)
+np.save('../_save/_npy/k55_y_data_cifar10.npy', arr=y_data_cifar10)
 
 (x_train, y_train), (x_test, y_test) = cifar100.load_data() 
 # (50000, 32, 32, 3) (10000, 32, 32, 3)
@@ -64,5 +65,5 @@ np.save('../_save/_npy/k55_y_data_mnist.npy', arr=y_data_cifar10)
 x_data_cifar100 = np.concatenate((x_train, x_test), axis=0)
 y_data_cifar100 = np.concatenate((y_train, y_test), axis=0)
 
-np.save('../_save/_npy/k55_x_data_mnist.npy', arr=x_data_cifar100)
-np.save('../_save/_npy/k55_y_data_mnist.npy', arr=y_data_cifar100)
+np.save('../_save/_npy/k55_x_data_cifar100.npy', arr=x_data_cifar100)
+np.save('../_save/_npy/k55_y_data_cifar100.npy', arr=y_data_cifar100)

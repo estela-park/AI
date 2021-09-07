@@ -44,5 +44,12 @@ end = time.time() - start
 loss = model.evaluate(x_test, y_test)
 print('it took',end//1,'seconds with loss:', loss[0], 'accuracy:', loss[1])
 
-# it took 2 minutes and 27 seconds 
-# with loss: 0.054192084819078445 accuracy: 0.9854999780654907
+# LSTM-Flatten   entropy: 0.08223655819892883, accuracy: 0.976800024509429
+# LSTM-GAP       entropy: 0.07211261242628098, accuracy: 0.978999972343444
+# DNN4D w/o GAP  entropy: 0.19406241178512573, accuracy: 0.940599977970123
+# DNN4D w/h GAP  entropy: 0.27129101753234863, accuracy: 0.914699971675872
+# DNN3D w/o GAP  entropy: 0.06997454166412354, accuracy: 0.980700016021728
+# CNN w/h GAP    entropy: 0.08116108924150467, accuracy: 0.984499990940094
+# CNN            entropy: 0.05236193165183067, accuracy: 0.991500020027160
+# Conv1D-GAP     entropy: 0.10824544727802277, accuracy: 0.968599975109100
+# Conv1D-Flatten entropy: 0.05419208481907844, accuracy: 0.985499978065490
