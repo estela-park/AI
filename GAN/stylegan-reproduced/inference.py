@@ -1,3 +1,5 @@
+import sys
+sys.path.append('D:\study\GAN\stylegan-reproduced')
 import os
 import pprint
 import numpy as np

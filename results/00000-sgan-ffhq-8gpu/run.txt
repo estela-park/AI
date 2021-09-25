@@ -1,0 +1,1 @@
+{'host_name': 'localhost', 'start_time': '2021-09-25 20:30:36.179553', 'task_name': 'bit-00000-sgan-ffhq-8gpu'}
