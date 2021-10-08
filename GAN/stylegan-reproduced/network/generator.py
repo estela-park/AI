@@ -7,7 +7,7 @@ from network.common_ops import (
     pixel_norm, adaptive_instance_norm, lerp, torgb, smooth_transition
 )
 
-
+#/................
 def g_mapping(z, w_dim, n_mapping, n_broadcast):
     with tf.variable_scope('g_mapping', reuse=tf.AUTO_REUSE):
         gain = np.sqrt(2)

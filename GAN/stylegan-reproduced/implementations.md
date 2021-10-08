@@ -57,7 +57,7 @@ def get_weight(weight_shape, gain, lrmul):
 * Style-based Generator
 * ![][StyleGAN-fig01]
 
-### AdaIN
+### AdaIN*
 * Learned affine transformations then specialize w to styles `y = (y_s, y_b)` that control adaptive instance normalization (AdaIN) operations after each convolution layer of the synthesis network g.
 * ![][StyleGAN-eq01]
 

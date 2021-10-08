@@ -144,7 +144,7 @@ def style_mod(x, w):
         x = x * (scale + 1) + bias
     return x
 
-
+# supplementary
 def adaptive_instance_norm(x, w):
     x = instance_norm(x)
     x = style_mod(x, w)

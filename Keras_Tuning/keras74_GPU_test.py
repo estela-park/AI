@@ -2,6 +2,18 @@
 #
 # Distributed operation should be implemented while building model
 
+import tensorflow as tf
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus :
+    try :
+        tf.config.experimental.list_physical_devices(gpus[0], 'GPU')
+        print('gpu is set')
+
+    except RuntimeError as e:
+        print(e)
+
+exit()
 
 import time
 import tensorflow as tf
@@ -31,7 +43,7 @@ y_test = enc.transform(y_test).toarray()
 
 # 2. modeling
 #    compile together
-with strategy.scope()
+with strategy.scope():
     input_l = Input(shape=(32, 32, 3))
     hl = Dense(32, activation='relu')(input_l)
     hl = Dropout(0.2)(hl)
