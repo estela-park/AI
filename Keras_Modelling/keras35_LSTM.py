@@ -1,6 +1,9 @@
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
+                                         # return_state: returns (Ct, Ht)
+                                         # return_sequences: returns {True: [H1: Ht] | False: ht} 
+
 
 # Data setting
 x = np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6]])
