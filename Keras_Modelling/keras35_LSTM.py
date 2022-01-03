@@ -21,7 +21,8 @@ model.summary()
 
 '''
 param = (units(units<Hw> + features<Iw> + bias)) * 4
-                                                   > forget_gate, input_gate, relevance_gate, output_gate 
+                                                   > forget_gate, input_gate, output_gate, tanh()사용은 gate라고 하지 않음
+                                                   > 3 gate + 1 tanh(W*h_t-1, W*x_t)
 _________________________________________________________________ 
 Layer (type)                 Output Shape              Param #
 =================================================================
