@@ -21,11 +21,9 @@ model.summary()
 
 '''
 param = (units(units<Hw> + features<Iw> + bias)) * 3
-                                                   > input_gate, relevance_gate
-> forget: replaced with 1 - update_gate
-  > both forget and update are products of sigmoid fn
-  > but forget parameters are counted in the model.summary()
-> no output gate: Ht = Ct
+                                                   > {reset, update} gate, 1 tanh(also serves gating purpose)
+> forget: replaced with 1 - update_gate(also refered as G_z)
+> no Cell state, AKA internal memory, next hidden state(, output) is calculated directly with previous hidden state and current input(x_t)
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
